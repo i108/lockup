@@ -13,10 +13,12 @@ module Lockup
           @codeword = params[:lockup_codeword].to_s.downcase
           @return_to = params[:return_to]
           if lockup_codeword.split("_").include? @codeword
+            puts lockup_codeword.split("_")
             set_cookie
             run_redirect
           end
         else
+          puts lockup_codeword.split("_")
           head :ok
         end
       elsif request.post?
@@ -24,9 +26,11 @@ module Lockup
           @codeword = params[:lockup][:codeword].to_s.downcase
           @return_to = params[:lockup][:return_to]
           if lockup_codeword.split("_").include? @codeword
+            puts lockup_codeword.split("_")
             set_cookie
             run_redirect
           else
+            puts lockup_codeword.split("_")
             @wrong = true
           end
         else
