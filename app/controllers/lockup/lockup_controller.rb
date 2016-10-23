@@ -5,14 +5,14 @@ module Lockup
     else
       skip_before_filter :check_for_lockup
     end
-    
+
     def unlock
       if params[:lockup_codeword].present?
         user_agent = request.env['HTTP_USER_AGENT'].downcase
         unless user_agent.match(/crawl|googlebot|slurp|spider|bingbot|tracker|click|parser|spider/)
           @codeword = params[:lockup_codeword].to_s.downcase
           @return_to = params[:return_to]
-          if @codeword == lockup_codeword
+          if lockup_codeword.split("_").include? @codeword
             set_cookie
             run_redirect
           end
@@ -23,7 +23,7 @@ module Lockup
         if params[:lockup].present? && params[:lockup].respond_to?(:'[]')
           @codeword = params[:lockup][:codeword].to_s.downcase
           @return_to = params[:lockup][:return_to]
-          if @codeword == lockup_codeword
+          if lockup_codeword.split("_").include? @codeword
             set_cookie
             run_redirect
           else
@@ -36,13 +36,13 @@ module Lockup
         respond_to :html
       end
     end
-    
+
     private
-    
+
     def set_cookie
       cookies[:lockup] = { value: @codeword.to_s.downcase, expires: (Time.now + 5.years) }
     end
-    
+
     def run_redirect
       if @return_to.present?
         redirect_to "#{@return_to}"
