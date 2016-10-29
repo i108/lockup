@@ -37,7 +37,9 @@ module Lockup
     elsif ENV["lockup_codeword"].present?
       ENV["lockup_codeword"].to_s.downcase.split("_")
     elsif Rails.application.respond_to?(:secrets) && Rails.application.secrets.lockup_codeword.present?
-      Rails.application.secrets.lockup_codeword.to_s.downcase.split("_")
+      password_main = Rails.application.secrets.lockup_codeword.to_s.downcase.split("_")
+      password_0 = Rails.application.secrets.lockup_codeword_0.to_s.downcase.split("_")
+      return password_main, password_0
     end
   end
 end

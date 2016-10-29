@@ -12,7 +12,8 @@ module Lockup
         unless user_agent.match(/crawl|googlebot|slurp|spider|bingbot|tracker|click|parser|spider/)
           @codeword = params[:lockup_codeword].to_s.downcase
           @return_to = params[:return_to]
-          if @codeword == lockup_codeword
+          password_main, password_0 = lockup_codeword
+          if ((@codeword == password_main) || (@codeword == password_0))
             set_cookie
             run_redirect
           end
@@ -23,13 +24,11 @@ module Lockup
         if params[:lockup].present? && params[:lockup].respond_to?(:'[]')
           @codeword = params[:lockup][:codeword].to_s.downcase
           @return_to = params[:lockup][:return_to]
-          @wrong = true
-          lockup_codeword.each do |a_codeword|
-            if @codeword == a_codeword
-              @wrong = false
-              set_cookie
-              run_redirect
-            end
+          if ((@codeword == password_main) || (@codeword == password_0))
+            set_cookie
+            run_redirect
+          else
+            @wrong = true
           end
         else
           head :ok
