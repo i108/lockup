@@ -18,6 +18,8 @@ module Lockup
           elsif @codeword == lockup_codeword_0
             set_cookie
             run_redirect
+          else
+            @wrong = true
           end
         else
           head :ok
@@ -27,6 +29,9 @@ module Lockup
           @codeword = params[:lockup][:codeword].to_s.downcase
           @return_to = params[:lockup][:return_to]
           if @codeword == lockup_codeword
+            set_cookie
+            run_redirect
+          elsif @codeword == lockup_codeword_0
             set_cookie
             run_redirect
           else
