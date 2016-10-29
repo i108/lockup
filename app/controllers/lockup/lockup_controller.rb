@@ -14,7 +14,7 @@ module Lockup
           @return_to = params[:return_to]
           the_lockup_codeword_array = lockup_codeword
           if the_lockup_codeword_array.include? @codeword
-            set_cookie
+            # set_cookie
             run_redirect
           end
         else
@@ -26,7 +26,7 @@ module Lockup
           @return_to = params[:lockup][:return_to]
           the_lockup_codeword_array = lockup_codeword
           if the_lockup_codeword_array.include? @codeword
-            set_cookie
+            # set_cookie
             run_redirect
           else
             @wrong = true
