@@ -33,14 +33,11 @@ module Lockup
 
   def lockup_codeword
     if ENV["LOCKUP_CODEWORD"].present?
-      the_lockup_codeword = ENV["LOCKUP_CODEWORD"].to_s.split("_")
-      return the_lockup_codeword
+      ENV["LOCKUP_CODEWORD"].to_s.downcase.split("_")
     elsif ENV["lockup_codeword"].present?
-      the_lockup_codeword = ENV["lockup_codeword"].to_s.split("_")
-      return the_lockup_codeword
+      ENV["lockup_codeword"].to_s.downcase.split("_")
     elsif Rails.application.respond_to?(:secrets) && Rails.application.secrets.lockup_codeword.present?
-      the_lockup_codeword = Rails.application.secrets.lockup_codeword.to_s.split("_")
-      return the_lockup_codeword
+      Rails.application.secrets.lockup_codeword.to_s.downcase.split("_")
     end
   end
 end
