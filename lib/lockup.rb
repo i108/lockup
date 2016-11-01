@@ -40,4 +40,14 @@ module Lockup
       Rails.application.secrets.lockup_codeword.to_s.downcase
     end
   end
+
+  def return_password_array_string
+    if ENV["PASSWORD_ARRAY_STRING"].present?
+      ENV["PASSWORD_ARRAY_STRING"].to_s.downcase
+    elsif ENV["password_array_string"].present?
+      ENV["password_array_string"].to_s.downcase
+    elsif Rails.application.respond_to?(:secrets) && Rails.application.secrets.password_array_string.present?
+      Rails.application.secrets.password_array_string.to_s.downcase
+    end
+  end
 end

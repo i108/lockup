@@ -25,7 +25,7 @@ module Lockup
         if params[:lockup].present? && params[:lockup].respond_to?(:'[]')
           @codeword = params[:lockup][:codeword].to_s.downcase
           @return_to = params[:lockup][:return_to]
-          password_array_string = Rails.application.secrets.password_array_string || ENV["PASSWORD_ARRAY_STRING"]
+          password_array_string = return_password_array_string
           password_array = password_array_string.split(",")
           if password_array.include? @codeword
             puts "--------------"
