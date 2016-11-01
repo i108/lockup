@@ -39,6 +39,7 @@ module Lockup
             puts "--------------"
             puts "--------------"
             puts "--------------"
+            @codeword = lockup_codeword
           end
 
           if @codeword == lockup_codeword
