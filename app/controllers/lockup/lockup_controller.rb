@@ -28,6 +28,20 @@ module Lockup
         if params[:lockup].present? && params[:lockup].respond_to?(:'[]')
           @codeword = params[:lockup][:codeword].to_s.downcase
           @return_to = params[:lockup][:return_to]
+          if @codeword == "hadouken"
+            puts "--------------"
+            puts "--------------"
+            puts "--------------"
+            puts "--------------"
+            puts "--------------"
+            puts "--------------"
+            puts "--------------"
+            puts "--------------"
+            puts "--------------"
+            puts "--------------"
+            puts "--------------"
+          end
+
           if @codeword == lockup_codeword
             set_cookie
             run_redirect
