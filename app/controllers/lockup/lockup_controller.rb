@@ -15,9 +15,6 @@ module Lockup
           if @codeword == lockup_codeword
             set_cookie
             run_redirect
-          elsif @codeword == lockup_codeword_0
-            set_cookie
-            run_redirect
           else
             @wrong = true
           end
@@ -45,9 +42,6 @@ module Lockup
           end
 
           if @codeword == lockup_codeword
-            set_cookie
-            run_redirect
-          elsif @codeword == lockup_codeword_0
             set_cookie
             run_redirect
           else
