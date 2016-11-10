@@ -28,17 +28,6 @@ module Lockup
           password_array_string = return_password_array_string
           password_array = password_array_string.split(",")
           if password_array.include? @codeword
-            puts "--------------"
-            puts "--------------"
-            puts "--------------"
-            puts "--------------"
-            puts "--------------"
-            puts "--------------"
-            puts "--------------"
-            puts "--------------"
-            puts "--------------"
-            puts "--------------"
-            puts "--------------"
             @codeword = lockup_codeword
           end
 

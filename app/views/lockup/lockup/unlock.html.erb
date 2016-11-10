@@ -1,4 +1,5 @@
-<h1>Please enter the code word to continue&hellip;</h1>
+<h2>Doc&Me will be open to the general public starting from January 1st, 2017</h2>
+<h2>Please enter the code word to continue&hellip;</h2>
 
 <% if @wrong %>
   <div class="hmm">
@@ -12,7 +13,7 @@
   <% else %>
     <p><%= form.password_field "codeword", value: @codeword, class: 'nope' %></p>
   <% end %>
-    
+
   <% if lockup_hint_present? %>
     <p id='hint_icon'>?</p>
     <p id='hint'><%= lockup_hint_display %></p>
@@ -23,6 +24,6 @@
   <% elsif @return_to.present? %>
     <%= form.hidden_field "return_to", value: @return_to %>
   <% end %>
-    
+
   <p><%= button_tag "Go" %></p>
 <% end %>
